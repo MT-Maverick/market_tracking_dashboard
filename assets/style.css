@@ -1,0 +1,32 @@
+h1{
+    text-align: "center"
+}
+
+h2{
+    text-align: "center"
+}
+
+#header{
+    display: flex;
+}
+
+#graph{
+    width: 80%;
+    float: "right";
+    height: 100vh;
+    padding: 10px;
+}
+
+#side-panel{
+    
+    width: 10%;
+    float:"Left";
+    height: 100vh;
+    background-color: #f0f0f0; 
+    padding: 20px;
+}
+
+#current-share-value{
+    font-size: 24px;
+    text-align: center;
+}
