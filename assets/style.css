@@ -1,19 +1,24 @@
+
 h1{
-    text-align: "center"
+    text-align: "center";
+    display :flex;
+    justify-content: center;
 }
 
-h2{
-    text-align: "center"
+h4{
+    text-align: "center";
 }
 
 #header{
     display: flex;
+    justify-content: space-between;
 }
 
 #graph{
-    width: 80%;
+    display: grid;
+    width: 90%;
     float: "right";
-    height: 100vh;
+    height: 70%;
     padding: 10px;
 }
 
@@ -21,7 +26,6 @@ h2{
     
     width: 10%;
     float:"Left";
-    height: 100vh;
     background-color: #f0f0f0; 
     padding: 20px;
 }
@@ -29,4 +33,7 @@ h2{
 #current-share-value{
     font-size: 24px;
     text-align: center;
+}
+.modebar-container{
+    display:none;
 }

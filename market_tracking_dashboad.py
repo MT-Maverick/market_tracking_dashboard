@@ -11,7 +11,7 @@ app.layout = html.Div(id="header",
     children=[
         html.Div(id="side-panel",
             children=[
-                html.H2("Current Share Value"),
+                html.H4("Current Price"),
                 html.Div(id="current-share-value"),
             ]
         ),
@@ -32,13 +32,21 @@ app.layout = html.Div(id="header",
     Input("interval-component", "n_intervals")
 )
 def update_data(n):
-    jse = yf.Ticker("JSE.JO")
-    current_price = jse.history(period="1d")['Close'].iloc[0] 
 
-    df = pd.DataFrame(jse.history(period="1mo"))
+    jse = yf.Ticker("JSE.JO")   #Create ticker object to access yahoo API
 
-    fig = make_subplots(rows=2, cols=1, shared_xaxes=True,vertical_spacing=0.01, row_heights=[0.7, 0.3])
+    current_price = int(jse.history(period="1d")['Close'].iloc[0]) #Get closing/current price of share
+    
+    df = pd.DataFrame(jse.history(period="1mo")) #Get trading history of share
+    
+    #Create 2 graphs on dcc.Graph canvas using subplots
+    fig = make_subplots(rows=2,                 
+                        cols=1,
+                        shared_xaxes=True,
+                        vertical_spacing=0.01,
+                        row_heights=[0.7, 0.3])
 
+    #Create 1st graph that displays market preformance
     fig.add_trace(go.Candlestick(x=df.index,
                                  open=df['Open'], 
                                  high=df['High'],
@@ -46,7 +54,11 @@ def update_data(n):
                                  close=df['Close']),
                    row=1, col=1)
 
-    fig.add_trace(go.Bar(x=df.index, y=df['Volume'], name='Volume'), row=2, col=1)
+    #Create 2nd graph that displays volume of share trade
+    fig.add_trace(go.Bar(x=df.index,
+                        y=df['Volume'],
+                        name='Volume'),
+                        row=2, col=1)
 
     fig.update_layout(
         xaxis=dict(
