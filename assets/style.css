@@ -1,39 +1,51 @@
 
 h1{
-    text-align: "center";
+    text-align: center;
     display :flex;
     justify-content: center;
+    
 }
 
-h4{
-    text-align: "center";
+h2{
+    text-align: center;
 }
+#chart{
 
-#header{
-    display: flex;
-    justify-content: space-between;
-}
-
-#graph{
-    display: grid;
-    width: 90%;
-    float: "right";
-    height: 70%;
+    width: 80%;
+    float: right;
+    height: 100%;
     padding: 10px;
 }
-
-#side-panel{
-    
+#side_panel{
     width: 10%;
-    float:"Left";
-    background-color: #f0f0f0; 
+    float: left;
+    height: 100vh;
+    background-color: #f0f0f0;
     padding: 20px;
+    transition: width 0.3s ease-in-out; 
 }
-
-#current-share-value{
-    font-size: 24px;
-    text-align: center;
+#sidebar-toggle{
+    padding-top: 5%;
 }
 .modebar-container{
     display:none;
+}
+
+button {
+    width: 100%; /* Make buttons take full width on smaller screens */
+    max-width: 200px; /* Set a maximum width on larger screens */
+    padding: 5%;
+    margin: 5%;
+    font-size:large;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    button {
+        font-size: small; /* Reduce text size on smaller screens */
+    }
+    #current-share-value{
+        font-size: small; /* Reduce text size on smaller screens */
+    }
 }
