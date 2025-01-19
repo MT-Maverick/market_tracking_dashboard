@@ -21,8 +21,7 @@ h2{
     float: left;
     height: 100vh;
     background-color: #f0f0f0;
-    padding: 20px;
-    transition: width 0.3s ease-in-out; 
+    padding: 20px; 
 }
 #sidebar-toggle{
     padding-top: 5%;
@@ -36,16 +35,24 @@ button {
     max-width: 200px; /* Set a maximum width on larger screens */
     padding: 5%;
     margin: 5%;
-    font-size:large;
     display: flex;
     justify-content: center;
 }
-
+#results{
+    width: 90%;
+    height: 70vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+#current-share-value{
+    font-size: large; /* Reduce text size on smaller screens */
+    text-align: center;
+}
+.svg{
+    padding-top: 0%;
+}
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
     button {
-        font-size: small; /* Reduce text size on smaller screens */
-    }
-    #current-share-value{
-        font-size: small; /* Reduce text size on smaller screens */
+        font-size: 7px; /* Reduce text size on smaller screens */
     }
 }
