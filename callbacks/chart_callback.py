@@ -14,10 +14,10 @@ def register_callback(app):
 
         jse = yf.Ticker("JSE.JO")   #Create ticker object to access yahoo API
 
-        current_price = jse.history(period="1d")['Close'].iloc[0] #Get closing/current price of share
-
-        df = pd.DataFrame(jse.history(period="1mo")) #Get trading history of share
-
+        current_price = jse.history(period="5d")['Close'].iloc[-1] #Get closing/current price of share
+       
+        df = pd.DataFrame(jse.history(period="ytd")) #Get trading history of share
+       
         #Create 2 graphs on dcc.Graph canvas using subplots
         fig = make_subplots(rows=2,
                             cols=1,
@@ -31,7 +31,7 @@ def register_callback(app):
                                     high=df['High'],
                                     low=df['Low'],
                                     close=df['Close']),
-                    row=1, col=1)
+                                    row=1, col=1)
 
         #Create 2nd graph that displays volume of share trade
         fig.add_trace(go.Bar(x=df.index,
