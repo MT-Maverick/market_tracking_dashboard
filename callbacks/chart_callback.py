@@ -51,4 +51,4 @@ def register_callback(app):
             yaxis2=dict(title='Volume'),  # Add title to volume axis
         )
 
-        return fig, f"R {current_price}"
+        return fig, f"Current Price: R{current_price}"

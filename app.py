@@ -1,17 +1,16 @@
 from dash import Dash, html, dcc, Input, Output, callback_context
-from components import side_panel, chart, results_panel  # Import modules
+from components import side_panel, chart  # Import modules
 import os
 
-app = Dash(__name__,external_stylesheets=['assets/styles.css'])
+app = Dash(__name__,external_stylesheets=['assets/style.css'])
 
 app.layout = html.Div([
     html.Div([
         dcc.Interval(id="interval-component", interval=30 * 1000, n_intervals=0),
         side_panel.layout,
         chart.layout,
-        results_panel.layout
     ]),
-    html.Div(id="content", children=[])  # Initially empty
+    html.Div([])
 ])
 
 

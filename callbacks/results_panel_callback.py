@@ -1,4 +1,5 @@
 from dash import html, Input, Output, callback_context
+from IPython.display import Markdown
 import yfinance as yf
 
 def ButtonComponent(app):  
@@ -36,11 +37,11 @@ def ButtonComponent(app):
         numberOfAnalystOpinions = info.get("numberOfAnalystOpinions","N/A")
 
         #More info:
-        address = jse.info.get("address1","N/A") +" "+ jse.info.get("city","N/A")+" "+jse.info.get("country","N/A")+" "+jse.info.get("zip","N/A")
-        phone = jse.info.get("phone","N/A")
-        website = jse.info.get("website","N/A")
+        address = info.get("address2","N/A") +" "+ info.get("city","N/A")+" "+info.get("zip","N/A")+" "+info.get("country","N/A")
+        phone = info.get("phone","N/A")
         sector = info.get("sector", "N/A")
-
+        website = info.get("website","N/A")
+        
 
         dividendInfo = html.Div(id="dividendInfo",
             children=[
