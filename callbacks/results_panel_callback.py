@@ -1,5 +1,5 @@
 from dash import html, Input, Output, callback_context
-from IPython.display import Markdown
+from prettytable import PrettyTable
 import yfinance as yf
 
 def ButtonComponent(app):  
@@ -11,16 +11,19 @@ def ButtonComponent(app):
         Input('dividendsButton', 'n_clicks'),
         Input('recommendationsButton', 'n_clicks'),
         Input('infoButton', 'n_clicks'),
+        Input('financialsButton', 'n_clicks'),
+        Input('balanceSheetButton', 'n_clicks'),
         
     )
-    def update_output(statisticsButton,dividendsButton,recommendationsButton,infoButton):
-        jse = yf.Ticker("JSE.JO")
+    def update_output(statisticsButton,dividendsButton,recommendationsButton,infoButton,financialsButton,balanceSheetButton):
+        
+        jse = yf.Ticker("MSFT")
         info = jse.info
 
 
         #Statistics Data:
-        open = jse.history(period="5d")["Open"].iloc[-1]
-        close = jse.history(period="5d")["Close"].iloc[-1]    
+        open = jse.history(period="5d")["Open"].iloc[-1].round(2)
+        close = jse.history(period="5d")["Close"].iloc[-1].round(2)    
         enterpriseValue = info.get("enterpriseValue","N/A")
         averageDailyVolume10Day = info.get("averageDailyVolume10Day","N/A")
         shortRatio = info.get("shortRatio","N/A")
@@ -33,16 +36,23 @@ def ButtonComponent(app):
         volatility =  jse.history(period="1mo")["Close"].std()
 
         #Suggestions Data:
-        recommendationKey = info.get("recommendationKey","N/A")
-        numberOfAnalystOpinions = info.get("numberOfAnalystOpinions","N/A")
+        recommendationKey = jse.info.get('recommendationKey')
+        numberOfAnalystOpinions = info.get("numberOfAnalystOpinions")
 
         #More info:
         address = info.get("address2","N/A") +" "+ info.get("city","N/A")+" "+info.get("zip","N/A")+" "+info.get("country","N/A")
         phone = info.get("phone","N/A")
         sector = info.get("sector", "N/A")
         website = info.get("website","N/A")
+        details = info.get("longBusinessSummary","N/A")
         
+        #Finacials information:
+        finacials = jse.financials
+        balanceSheet = jse.balancesheet
 
+    
+
+        
         dividendInfo = html.Div(id="dividendInfo",
             children=[
             html.P(f"dividend Rate: {dividendRate}"),
@@ -67,17 +77,17 @@ def ButtonComponent(app):
             html.P(f"numberOfAnalystOpinions: {numberOfAnalystOpinions}"),
 
         ])
-
         moreInfo = html.Div(id="moreInfo",
             children=[
             html.P(f"Address: {address}"),
             html.P(f"Industry: {sector}"),
             html.P(f"Phone: {phone}"),
-            html.P(f"Site: {website}"),
+            html.A(f"Site: {website}", href=f"{website}",target=website),
+            html.P(f"{details}"),
         ]) 
 
-        ctx = callback_context
 
+        ctx = callback_context
         button_id = ctx.triggered[0]["prop_id"].split(".")[0] 
         
         if button_id == "statisticsButton":
@@ -88,3 +98,8 @@ def ButtonComponent(app):
             return suggestionsInfo
         elif button_id == "infoButton":
             return moreInfo
+        elif button_id == "financialsButton":
+            return None
+        elif button_id == "balanceSheetButton":
+            return None
+

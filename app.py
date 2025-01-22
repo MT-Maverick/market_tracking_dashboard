@@ -21,4 +21,4 @@ side_panel_callback.register_callback(app)  # Register callbacks
 results_panel_callback.ButtonComponent(app)
 
 if __name__ == "__main__":
-    app.run_server(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8888)))
+    app.run_server(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8889)))

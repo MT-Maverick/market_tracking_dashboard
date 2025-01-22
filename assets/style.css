@@ -1,13 +1,10 @@
 
-h1{
+h1, h3{
     text-align: center;
     display :flex;
     justify-content: center;
 }
 
-h2{
-    text-align: center;
-}
 #chart{
 
     width: 80%;
@@ -15,6 +12,7 @@ h2{
     height: 100%;
     padding: 10px;
 }
+
 #side_panel{
     width: 10%;
     float: left;
@@ -32,14 +30,15 @@ h2{
 button {
     width: 100%; /* Make buttons take full width on smaller screens */
     max-width: 200px; /* Set a maximum width on larger screens */
-    padding: 5%;
+    padding: 3%;
     margin: 10%;
     display: flex;
     justify-content: center;
+    border: none;
 }
 #output-container{
     width: 90%;
-    height:30vh;
+    height:90vh;
     background-color: #f0f0f0;
     
     display:flex;
@@ -55,6 +54,21 @@ button {
     height: 100%;
 }
 
+p {
+    transition: 0.5s ease, transform 0.5s ease ; /* Adjust timing */
+    animation: text_animation 1s ease-out 0s  ;
+}
+
+@keyframes text_animation {
+    0%{
+        opacity:0%;
+        transform: translateX(50%); /* Optional: Adjust for smoother movement */
+    }
+    100%{
+        opacity: 100%;
+        transform: translateX(0%); /* Optional: Adjust for smoother movement */
+    }
+}
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
     button {
         font-size: 7px; /* Reduce text size on smaller screens */
