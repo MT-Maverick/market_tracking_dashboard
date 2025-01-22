@@ -12,11 +12,14 @@ def register_callback(app):
     )
     def update_data(n):
 
-        jse = yf.Ticker("JSE.JO")   #Create ticker object to access yahoo API
+        jse = yf.Ticker("MSFT")   #Create ticker object to access yahoo API
+        current_price = jse.history(period="5d")['Close'].iloc[-1] #Get closing/current price of share
 
-        current_price = jse.history(period="1d")['Close'].iloc[0] #Get closing/current price of share
+        
 
-        df = pd.DataFrame(jse.history(period="1mo")) #Get trading history of share
+        df = pd.DataFrame(jse.history(period="ytd")) #Get trading history of share
+        df['PriceChange'] = df['Close']-df['Open']
+        colour = ['green' if change > 0 else 'red' for change in df['PriceChange']]
 
         #Create 2 graphs on dcc.Graph canvas using subplots
         fig = make_subplots(rows=2,
@@ -31,13 +34,17 @@ def register_callback(app):
                                     high=df['High'],
                                     low=df['Low'],
                                     close=df['Close']),
-                    row=1, col=1)
+                                    row=1, col=1)
 
         #Create 2nd graph that displays volume of share trade
         fig.add_trace(go.Bar(x=df.index,
                             y=df['Volume'],
-                            name='Volume'),
-                            row=2, col=1)
+                            name='Volume',
+                            marker_color=colour,
+                            opacity=0.6,
+                            ),
+                            row=2, col=1, 
+                            )
 
         fig.update_layout(
             xaxis=dict(
@@ -46,9 +53,10 @@ def register_callback(app):
             tickmode="array",
             tickvals=df.index,
             ticktext=df.index.strftime("%d"),
+            
             ),
             yaxis=dict(title='Price'),  # Add title to price axis
             yaxis2=dict(title='Volume'),  # Add title to volume axis
         )
 
-        return fig, f"R {current_price}"
+        return fig, f"Current Price: ${current_price}"
