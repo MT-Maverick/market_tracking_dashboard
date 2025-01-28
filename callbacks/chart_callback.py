@@ -6,9 +6,10 @@ import pandas as pd
 
 def register_callback(app):
     @app.callback(
-        Output("candlestick-chart", "figure"),
         Output("current-share-value", "children"),
-        Input("interval-component", "n_intervals")
+        Output("candlestick-chart", "figure"),
+        [Input('drop_down_list','value'),
+        Input("interval-component", "n_intervals")]
     )
     def update_data(n):
 
