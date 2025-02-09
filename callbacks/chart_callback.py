@@ -4,16 +4,16 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pandas as pd
 
+#Call back method for chart:
 def register_callback(app):
     @app.callback(
         Output("current-share-value", "children"),
         Output("candlestick-chart", "figure"),
-        [Input('drop_down_list','value'),
-        Input("interval-component", "n_intervals")]
+        [Input("interval-component", "n_intervals")]
     )
     def update_data(n):
 
-        jse = yf.Ticker("MSFT")   #Create ticker object to access yahoo API
+        jse = yf.Ticker("JSE.JO")   #Create ticker object to access yahoo API
         current_price = jse.history(period="5d")['Close'].iloc[-1] #Get closing/current price of share
 
         
@@ -60,4 +60,4 @@ def register_callback(app):
             yaxis2=dict(title='Volume'),  # Add title to volume axis
         )
 
-        return fig, f"Current Price: ${current_price}"
+        return f"Current Price: R{current_price.round(2)}",fig

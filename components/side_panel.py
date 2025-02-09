@@ -1,5 +1,6 @@
 from dash import html
 
+#Side panel for stock details(I.e Dividence yield, market recomendations, current dividences allocation per share etc..):
 layout = html.Div(id="side_panel",
     children=[
         html.H3("Menu:"),
