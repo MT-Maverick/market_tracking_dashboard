@@ -36,9 +36,17 @@ button {
     max-width: 200px; /* Set a maximum width on larger screens */
     padding: 5%;
     margin: 5%;
-    font-size:large;
+    border-style:hidden;
+    font-size:medium;
     display: flex;
     justify-content: center;
+}
+#share_stats{
+    width: 80%;
+    float: right;
+    height: 100%;
+    padding: 10px;
+
 }
 
 @media (max-width: 768px) { /* Adjust breakpoint as needed */

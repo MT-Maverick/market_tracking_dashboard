@@ -10,4 +10,5 @@ def register_callback(app):
         Input("info-button", "n_clicks"),]
     )
     def toggle_sidebar(statistics_button,dividends_button,recommendations_button,info_button,current_style):
+        
         return None
