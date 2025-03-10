@@ -1,8 +1,12 @@
-from dash import Output, Input
+# /home/mfundosindane0/market_tracking_dashboard/callbacks/chart_callback.py
+from dash import Output, Input, html
 import yfinance as yf
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pandas as pd
+
+# create a dictionary to store the last price.
+previous_prices = {}
 
 def register_callback(app):
     @app.callback(
@@ -50,6 +54,20 @@ def register_callback(app):
             ),
             yaxis=dict(title='Price'),  # Add title to price axis
             yaxis2=dict(title='Volume'),  # Add title to volume axis
+            plot_bgcolor="#252526",  # Set plot background color
+            paper_bgcolor="#252526",
+            font_color="#d4d4d4"
         )
 
-        return fig, f"R {current_price}"
+        price_class = "current_price"  # Default class
+
+        if "JSE.JO" in previous_prices:
+            previous_price = previous_prices["JSE.JO"]
+            if current_price > previous_price:
+                price_class = "current_price price-up"
+            elif current_price < previous_price:
+                price_class = "current_price price-down"
+        
+        previous_prices["JSE.JO"] = current_price
+
+        return fig, html.P(f"R {current_price:.2f}", className=price_class)

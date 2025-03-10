@@ -1,14 +1,22 @@
 
-h1{
-    text-align: center;
-    display :flex;
-    justify-content: center;
-    
+/* assets/style.css */
+
+body {
+    background-color: #1e1e1e; /* Dark background */
+    color: #d4d4d4; /* Light gray text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* General font */
+    margin: 0;
+    padding: 0;
 }
 
-h2{
+h1, h2, h3, h4, h5, h6 {
+    color: gold; /* Lighter text for headings */
+    display :flex;
+    justify-content: center;
     text-align: center;
+
 }
+
 #chart{
 
     width: 80%;
@@ -16,17 +24,20 @@ h2{
     height: 100%;
     padding: 10px;
 }
+
 #side_panel{
     width: 10%;
     float: left;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: grey;
     padding: 20px;
     transition: width 0.3s ease-in-out; 
 }
+
 #sidebar-toggle{
     padding-top: 5%;
 }
+
 .modebar-container{
     display:none;
 }
@@ -40,6 +51,14 @@ button {
     font-size:medium;
     display: flex;
     justify-content: center;
+
+    background-color: #3c3c3c;
+    color: #c5c5c5;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 #share_stats{
     width: 80%;
@@ -56,4 +75,79 @@ button {
     #current-share-value{
         font-size: small; /* Reduce text size on smaller screens */
     }
+}
+
+
+.container {
+    background-color: #252526;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #3c3c3c;
+}
+
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #3c3c3c;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #2d2d30;
+    color: #c5c5c5;
+}
+
+
+.button:hover {
+    background-color: #4e4e4e;
+}
+.sidebar {
+    background-color: #252526;
+    color: #d4d4d4;
+    border-right: 1px solid #3c3c3c;
+}
+/* Styling for the stats panel content */
+.stats-content {
+    background-color: #252526; /* Dark panel background */
+    color: #d4d4d4; /* Light text color */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #3c3c3c;
+    font-family: "Consolas", monospace;
+    overflow:auto;
+    height: 600px;
+
+}
+
+/* Styling for the chart section */
+.chart-container {
+    background-color: #252526; /* Dark panel background */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #3c3c3c;
+    width: 100%;
+}
+
+.current_price{
+    color: #b5cea8;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.price-up {
+    color: #00cc00; /* Green for price increase */
+}
+
+.price-down {
+    color: darkred; /* Red for price decrease */
+}
+
+.stats-content{
+    color: #b5cea8;
 }
