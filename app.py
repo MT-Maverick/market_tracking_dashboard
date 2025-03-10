@@ -1,9 +1,10 @@
+# /home/mfundosindane0/market_tracking_dashboard/app.py
 import os
 from dash import Dash, html, dcc
-from components import side_panel, chart,share_stats  # Import modules
-from callbacks import chart_callback, side_panel_callback, share_stats_callback  # Import callbacks
+from components import side_panel, chart, share_stats  # Import modules
+from callbacks import chart_callback, share_stats_callback  # Import callbacks
 
-app = Dash(__name__,external_stylesheets=['assets/styles.css'])
+app = Dash(__name__, external_stylesheets=['assets/styles.css'])
 
 app.layout = html.Div(
     children=[
@@ -16,10 +17,9 @@ app.layout = html.Div(
 )
 
 chart_callback.register_callback(app)  # Register callbacks
-side_panel_callback.register_callback(app)  # Register callbacks
 share_stats_callback.register_callback(app)  # Register callbacks
 
 
-
 if __name__ == "__main__":
-    app.run_server(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8888)))
+    app.run_server(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8889)))
+

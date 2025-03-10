@@ -2,3 +2,4 @@ dash
 yfinance
 pandas
 numpy
+google_generativeai == 0.8.4

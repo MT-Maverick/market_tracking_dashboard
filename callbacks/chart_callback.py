@@ -10,6 +10,7 @@ def register_callback(app):
         Output("current-share-value", "children"),
         Input("interval-component", "n_intervals")
     )
+    
     def update_data(n):
 
         jse = yf.Ticker("JSE.JO")   #Create ticker object to access yahoo API
