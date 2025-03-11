@@ -107,7 +107,7 @@ def register_callback(app):
         elif "info-button" in changed_id:
             # Format the entire info of the jse stock.
             info_html = [html.P(f"{key}: {value}") for key, value in info.items()]
-            return html.Div(info_html[:11], className="stats-content")
+            return html.Div(info_html, className="stats-content")
         
         elif "Finacials" in changed_id:
             # Format the entire info of the jse stock.
