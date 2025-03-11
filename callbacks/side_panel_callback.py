@@ -13,4 +13,4 @@ def register_callback(app):
     )
     def toggle_sidebar(statistics_button,dividends_button,recommendations_button,info_button,current_style,Finacials,Balancesheet):
         
-        return {"width": "300px"}
+        return {"width": "300px", "height": "100vh", "position": "fixed", "top": 0, "overflow-y": "auto"}

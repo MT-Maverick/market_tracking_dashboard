@@ -44,7 +44,7 @@ def format_dataframe_as_html_list(df):
     for index, row in df.iterrows():
         items.append(html.H6(index))
         for col, value in row.items():
-            items.append(html.P(f"{col}: {value}"))
+            items.append(html.P(f"{col.strftime('%y-%m-%d')}: R{value}"))
     return html.Div(items)
 
 def register_callback(app):
@@ -112,13 +112,15 @@ def register_callback(app):
         elif "Finacials" in changed_id:
             # Format the entire info of the jse stock.
             financials = jse.financials
-            return format_dataframe_as_html_list(financials)
+            financials = financials.iloc[:, :2]
+            return html.Div(format_dataframe_as_html_list(financials), className="stats-content")
 
        
         elif "Balancesheet" in changed_id:
             # Format the entire info of the jse stock.
             balancesheet = jse.balance_sheet
-            return format_dataframe_as_html_list(balancesheet)
+            balancesheet = balancesheet.iloc[:, :2]
+            return html.Div(format_dataframe_as_html_list(balancesheet), className="stats-content")
         
         else:
             # This should technically not happen, but it's a good safety net
