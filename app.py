@@ -1,25 +1,24 @@
-# /home/mfundosindane0/market_tracking_dashboard/app.py
-import os
-from dash import Dash, html, dcc
-from components import side_panel, chart, share_stats  # Import modules
-from callbacks import chart_callback, share_stats_callback  # Import callbacks
+import streamlit as st
 
-app = Dash(__name__, external_stylesheets=['assets/styles.css'])
+def import_model():
 
-app.layout = html.Div(
-    children=[
-        dcc.Interval(id="interval-component", interval=30 * 1000, n_intervals=0),
-        side_panel.layout,
-        chart.layout,
-        share_stats.layout,
-    ],
-    style={"overflow": "hidden"},
-)
+    return None
 
-chart_callback.register_callback(app)  # Register callbacks
-share_stats_callback.register_callback(app)  # Register callbacks
+def main():
+    st.set_page_config(page_title="Market Tracking Dashboard", layout="wide")
+    st.title("Market Tracking Dashboard")
+    st.write("Welcome to your basic Streamlit app template!")
 
+    st.sidebar.header("Navigation")
+    st.sidebar.write("Add your sidebar items here.")
+
+    # Example main content
+    st.header("Overview")
+    st.write("This is where your dashboard content will go.")
+
+    # Example placeholder for charts/data
+    st.subheader("Sample Chart")
+    st.line_chart([1, 3, 2, 4, 5])
 
 if __name__ == "__main__":
-    app.run_server(host='0.0.0.0', port=int(os.environ.get('PORT', 8888)))
-
+    main()

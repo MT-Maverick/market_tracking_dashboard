@@ -1,5 +1,5 @@
-dash 
-yfinance
-pandas
-numpy
-google_generativeai == 0.8.4
+streamlit == 1.46.0
+pandas == 2.3.0
+numpy == 2.3.1
+yfinance == 0.2.63
+scikit-learn == 1.7.0
